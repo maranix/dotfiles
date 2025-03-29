@@ -1,5 +1,5 @@
 -- Setup autocmd for Linting
-vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufReadPost', 'InsertLeave', 'TextChanged' }, {
+vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufReadPost', 'InsertLeave' }, {
     callback = function()
         local lint = require('lint')
         lint.try_lint()

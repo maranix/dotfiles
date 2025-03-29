@@ -22,10 +22,16 @@ local lua_ls = {
                     version = 'LuaJIT',
                 },
                 workspace = {
-                    checkThirdPart = false,
+                    checkThirdParty = false,
                     library = {
                         vim.env.VIMRUNTIME,
                     },
+                },
+                diagnostics = {
+                    global = { 'vim' },
+                },
+                telemetry = {
+                    enable = false,
                 },
             },
         },
