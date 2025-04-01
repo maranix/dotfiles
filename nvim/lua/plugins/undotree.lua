@@ -8,9 +8,17 @@ end
 
 return {
     'mbbill/undotree',
+    commit = 'b951b87b46c34356d44aa71886aecf9dd7f5788a',
+    event = { 'BufReadPre', 'BufNewFile' },
+    keys = {
+        {
+            '<leader>u',
+            '<CMD>UndotreeToggle<CR>',
+            desc = 'Toggle Undotree',
+        },
+    },
     config = function()
         vim.opt.undodir = get_path()
         vim.opt.undofile = true
-        vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
     end,
 }

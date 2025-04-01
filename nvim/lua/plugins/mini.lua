@@ -1,23 +1,16 @@
 return {
     {
         'echasnovski/mini.nvim',
-        version = '*',
+        tag = 'v0.15.0',
+        keys = {
+            { '<leader>ff', '<CMD>:Pick files<CR>', desc = 'Find files in CWD' },
+            { '<leader>fb', '<CMD>:Pick buffers<CR>', desc = 'Find buffers' },
+            { '<leader>fg', '<CMD>:Pick grep_live<CR>', desc = 'Live grep in CWD' },
+        },
+
         config = function()
-            local surround = require('mini.surround')
-            local pick = require('mini.pick')
-
-            surround.setup()
-
-            -- Mini.pick
-            -- Files & Buffers
-            vim.keymap.set('n', 'ff', '<CMD>:Pick files<CR>', { desc = 'Find files in CWD' })
-            vim.keymap.set('n', 'fb', '<CMD>:Pick buffers<CR>', { desc = 'Find buffers' })
-
-            -- Grep
-            vim.keymap.set('n', 'fg', '<CMD>:Pick grep_live<CR>', { desc = 'Live grep in CWD' })
-            -- Mini.pick
-
-            pick.setup()
+            require('mini.pick').setup()
+            require('mini.surround')
         end,
     },
 }

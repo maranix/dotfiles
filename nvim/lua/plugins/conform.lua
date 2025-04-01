@@ -1,13 +1,14 @@
 return {
     'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
+    tag = 'v9.0.0',
+    event = { 'LspAttach', 'BufWritePre', 'BufReadPost', 'BufNewFile' },
     cmd = { 'ConformInfo' },
     keys = {
         {
             -- Customize or remove this keymap to your liking
             '<leader>f',
             function()
-                require('conform').format({ async = true })
+                require('conform').format({ async = true, lsp_format = 'fallback' })
             end,
             mode = '',
             desc = 'Format buffer',
@@ -21,13 +22,30 @@ return {
         formatters_by_ft = {
             lua = { 'stylua' },
             zig = { 'zigfmt' },
+            go = { 'gofmt' },
+            python = { 'ruff_organize_imports', 'ruff_format' },
+
+            -- This is so fucked
+            javascript = { 'prettier_formatter' },
+            javascriptreact = { 'prettier_formatter' },
+            typescript = { 'prettier_formatter' },
+            typescriptreact = { 'prettier_formatter' },
+            vue = { 'prettier_formatter' },
+            css = { 'prettier_formatter' },
+            html = { 'prettier_formatter' },
+        },
+        formatters = {
+            prettier_formatter = {
+                command = 'prettier',
+                args = { '--write', '--stdin-filepath', '$FILENAME' },
+            },
         },
         -- Set default options
-        default_format_opts = {
+        default_format_opts = { lsp_format = 'fallback' },
+        format_on_save = {
+            timeout_ms = 500,
             lsp_format = 'fallback',
         },
-        -- Set up format-on-save
-        format_on_save = { timeout_ms = 500 },
         -- Customize formatters
         --formatters = {
         --	shfmt = {
