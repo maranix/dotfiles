@@ -1,5 +1,4 @@
-{ programs, ... }:
-
+{ ... }:
 {
 	programs = {
 		git = {
@@ -7,7 +6,7 @@
 			userName = "Raman Verma";
 			userEmail = "ramanverma4183@gmail.com";
 		};
-
+		
 		gh.enable = true;
 	};
 }

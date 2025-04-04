@@ -1,0 +1,4 @@
+shell-integration-features = true
+
+theme = dark:rose-pine,light:rose-pine-dawn
+font-size = 16
