@@ -17,6 +17,7 @@ return {
     {
         'nvim-treesitter/nvim-treesitter',
         tag = 'v0.9.3',
+        pin = true,
         build = ':TSUpdate',
         event = { 'BufRead', 'BufNewFile' },
         config = function()

@@ -3,6 +3,7 @@ return {
         'folke/lazydev.nvim',
         tag = 'v1.9.0',
         ft = 'lua', -- only load on lua files
+        pin = true,
         opts = {
             library = {
                 -- See the configuration section for more details
@@ -15,6 +16,7 @@ return {
         'saghen/blink.cmp',
         event = { 'BufReadPre', 'BufNewFile' },
         version = '1.*',
+        pin = true,
         dependencies = {
             'rafamadriz/friendly-snippets',
             'xzbdmw/colorful-menu.nvim',

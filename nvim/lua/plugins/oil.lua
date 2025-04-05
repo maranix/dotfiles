@@ -1,6 +1,7 @@
 return {
     'stevearc/oil.nvim',
     tag = 'v2.15.0',
+    pin = true,
     keys = {
         { '<leader>pv', '<CMD>Oil --float<CR>', desc = 'Open Oil.nvim in floating window ' },
     },

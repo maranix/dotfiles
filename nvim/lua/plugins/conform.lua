@@ -1,6 +1,7 @@
 return {
     'stevearc/conform.nvim',
     tag = 'v9.0.0',
+    pin = true,
     event = { 'LspAttach', 'BufWritePre', 'BufReadPost', 'BufNewFile' },
     cmd = { 'ConformInfo' },
     keys = {

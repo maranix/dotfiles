@@ -3,9 +3,14 @@ return {
     -- Lazy load
     cmd = 'Mason',
     tag = 'v1.11.0',
+    pin = true,
     dependencies = {
-        { 'williamboman/mason-lspconfig.nvim', tag = 'v1.32.0' },
-        { 'WhoIsSethDaniel/mason-tool-installer.nvim', commit = '98767d37f8e5255a5111fc1e3163232d4dc07bda' },
+        { 'williamboman/mason-lspconfig.nvim', tag = 'v1.32.0', pin = true },
+        {
+            'WhoIsSethDaniel/mason-tool-installer.nvim',
+            commit = '98767d37f8e5255a5111fc1e3163232d4dc07bda',
+            pin = true,
+        },
     },
     config = function()
         local mason = require('mason')

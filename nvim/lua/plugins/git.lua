@@ -2,6 +2,7 @@ return {
     {
         'tpope/vim-fugitive',
         commit = '4a745ea72fa93bb15dd077109afbb3d1809383f2',
+        pin = true,
         keys = function()
             return {
                 { '<leader>gs', vim.cmd.Git, desc = 'open Git' },
@@ -33,6 +34,7 @@ return {
     {
         'lewis6991/gitsigns.nvim',
         tag = 'v1.0.2',
+        pin = true,
         event = { 'BufReadPre', 'BufNewFile' },
         opts = {
             current_line_blame = true,

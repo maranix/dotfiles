@@ -9,6 +9,7 @@ end
 return {
     'mbbill/undotree',
     commit = 'b951b87b46c34356d44aa71886aecf9dd7f5788a',
+    pin = true,
     event = { 'BufReadPre', 'BufNewFile' },
     keys = {
         {

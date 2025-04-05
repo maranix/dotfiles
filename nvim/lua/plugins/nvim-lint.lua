@@ -1,6 +1,7 @@
 return {
     'mfussenegger/nvim-lint',
     commit = '93b8040115c9114dac1047311763bef275e752dc',
+    pin = true,
     -- opts = {},
     config = function()
         -- Setup autocmd for Linting

@@ -2,6 +2,7 @@ return {
     {
         'echasnovski/mini.nvim',
         tag = 'v0.15.0',
+        pin = true,
         keys = {
             { '<leader>ff', '<CMD>:Pick files<CR>', desc = 'Find files in CWD' },
             { '<leader>fb', '<CMD>:Pick buffers<CR>', desc = 'Find buffers' },
