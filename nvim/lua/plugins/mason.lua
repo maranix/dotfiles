@@ -1,7 +1,5 @@
 return {
     'williamboman/mason.nvim',
-    -- Lazy load
-    cmd = 'Mason',
     tag = 'v1.11.0',
     pin = true,
     dependencies = {
@@ -13,7 +11,7 @@ return {
         },
     },
     config = function()
-        local mason = require('mason')
+        require('mason').setup()
 
         vim.schedule(function()
             vim.defer_fn(function()
@@ -48,7 +46,5 @@ return {
                 vim.cmd('MasonToolsInstall')
             end, 1000)
         end)
-
-        mason.setup()
     end,
 }
