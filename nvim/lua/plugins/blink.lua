@@ -25,10 +25,14 @@ return {
         ---@type blink.cmp.Config
         opts = {
             keymap = { preset = 'enter' },
-            signature = { enabled = true },
-            cmdline = { completion = { menu = { auto_show = true } } },
+            signature = { enabled = true, window = { show_documentation = false } },
+            cmdline = {
+                enabled = true,
+                keymap = { preset = 'inherit' },
+                completion = { menu = { auto_show = true } },
+            },
             completion = {
-                list = { selection = { preselect = true, auto_insert = true } },
+                list = { selection = { preselect = true } },
                 menu = {
                     draw = {
                         -- We don't need label_description now because label and label_description are already
@@ -69,7 +73,6 @@ return {
                     },
                 },
             },
-
             sources = {
                 default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
                 providers = {
@@ -79,9 +82,17 @@ return {
                         -- make lazydev completions top priority (see `:h blink.cmp`)
                         score_offset = 100,
                     },
+                    cmdline = {
+                        min_keyword_length = function(ctx)
+                            -- when typing a command, only show when the keyword is 3 characters or longer
+                            if ctx.mode == 'cmdline' and string.find(ctx.line, ' ') == nil then
+                                return 3
+                            end
+                            return 0
+                        end,
+                    },
                 },
             },
-
             fuzzy = { implementation = 'prefer_rust_with_warning' },
         },
         opts_extend = { 'sources.default' },
