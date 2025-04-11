@@ -2,7 +2,7 @@ local mason_registry = require('mason-registry')
 local vls_path = mason_registry.get_package('vue-language-server'):get_install_path()
     .. '/node_modules/@vue/language-server'
 
-local lsp = {
+local server = {
     default_config = {
         init_options = {
             hostInfo = 'neovim',
@@ -98,4 +98,4 @@ require'lspconfig'.ts_ls.setup{
     },
 }
 
-return lsp.default_config
+return server.default_config

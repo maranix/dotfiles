@@ -1,4 +1,4 @@
-local lsp = {
+local server = {
     default_config = {
         cmd = { 'vscode-html-language-server', '--stdio' },
         filetypes = { 'html', 'templ' },
@@ -38,4 +38,4 @@ require'lspconfig'.html.setup {
     },
 }
 
-return lsp.default_config
+return server.default_config

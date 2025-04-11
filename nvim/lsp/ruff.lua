@@ -1,4 +1,4 @@
-local lsp = {
+local server = {
     default_config = {
         cmd = { 'ruff', 'server' },
         filetypes = { 'python' },
@@ -38,4 +38,4 @@ Refer to the [documentation](https://docs.astral.sh/ruff/editors/) for more deta
     },
 }
 
-return lsp.default_config
+return server.default_config

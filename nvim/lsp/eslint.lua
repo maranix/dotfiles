@@ -48,22 +48,7 @@ local function fix_all(opts)
     })
 end
 
-local root_files = {
-    '.eslintrc',
-    '.eslintrc.js',
-    '.eslintrc.cjs',
-    '.eslintrc.yaml',
-    '.eslintrc.yml',
-    '.eslintrc.json',
-    'eslint.config.js',
-    'eslint.config.mjs',
-    'eslint.config.cjs',
-    'eslint.config.ts',
-    'eslint.config.mts',
-    'eslint.config.cts',
-}
-
-local lsp_opts = {
+local server = {
     default_config = {
         cmd = { 'vscode-eslint-language-server', '--stdio' },
         filetypes = {
@@ -84,7 +69,20 @@ local lsp_opts = {
 
         -- return root_files
         -- end,
-        root_markers = root_files,
+        root_markers = {
+            '.eslintrc',
+            '.eslintrc.js',
+            '.eslintrc.cjs',
+            '.eslintrc.yaml',
+            '.eslintrc.yml',
+            '.eslintrc.json',
+            'eslint.config.js',
+            'eslint.config.mjs',
+            'eslint.config.cjs',
+            'eslint.config.ts',
+            'eslint.config.mts',
+            'eslint.config.cts',
+        },
         -- Refer to https://github.com/Microsoft/vscode-eslint#settings-options for documentation.
         settings = {
             validate = 'on',
@@ -212,4 +210,4 @@ Additional messages you can handle: `eslint/noConfig`
     },
 }
 
-return lsp_opts.default_config
+return server.default_config

@@ -18,7 +18,7 @@ local volar_init_options = {
     },
 }
 
-local lsp = {
+local server = {
     default_config = {
         cmd = { 'vue-language-server', '--stdio' },
         filetypes = { 'vue' },
@@ -112,4 +112,4 @@ require'lspconfig'.volar.setup {
     },
 }
 
-return lsp.default_config
+return server.default_config

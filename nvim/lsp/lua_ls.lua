@@ -9,7 +9,7 @@ local root_files = {
     '.git',
 }
 
-local lua_ls = {
+local server = {
     default_config = {
         cmd = { 'lua-language-server' },
         filetypes = { 'lua' },
@@ -94,4 +94,4 @@ See `lua-language-server`'s [documentation](https://luals.github.io/wiki/setting
     },
 }
 
-return lua_ls.default_config
+return server.default_config

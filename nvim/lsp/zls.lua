@@ -1,4 +1,4 @@
-local zls = {
+local server = {
     default_config = {
         cmd = { 'zls' },
         on_new_config = function(new_config, new_root_dir)
@@ -19,4 +19,4 @@ Zig LSP implementation + Zig Language Server
     },
 }
 
-return zls.default_config
+return server.default_config

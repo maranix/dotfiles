@@ -1,4 +1,4 @@
-local lsp = {
+local server = {
     default_config = {
         cmd = { 'dart', 'language-server', '--protocol=lsp' },
         filetypes = { 'dart' },
@@ -26,4 +26,4 @@ Language server for dart.
     },
 }
 
-return lsp.default_config
+return server.default_config

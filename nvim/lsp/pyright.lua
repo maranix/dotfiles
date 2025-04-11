@@ -29,7 +29,7 @@ local function set_python_path(path)
     end
 end
 
-local lsp = {
+local server = {
     default_config = {
         cmd = { 'pyright-langserver', '--stdio' },
         filetypes = { 'python' },
@@ -77,4 +77,4 @@ https://github.com/microsoft/pyright
     },
 }
 
-return lsp.default_config
+return server.default_config

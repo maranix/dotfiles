@@ -1,4 +1,4 @@
-local lsp = {
+local server = {
     default_config = {
         cmd = { 'vscode-css-language-server', '--stdio' },
         filetypes = { 'css', 'scss', 'less' },
@@ -37,4 +37,4 @@ require'lspconfig'.cssls.setup {
     },
 }
 
-return lsp.default_config
+return server.default_config

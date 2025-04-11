@@ -1,6 +1,6 @@
 local mod_cache = nil
 
-local lsp = {
+local server = {
     default_config = {
         cmd = { 'gopls' },
         filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
@@ -28,4 +28,4 @@ Google's lsp server for golang.
     },
 }
 
-return lsp.default_config
+return server.default_config

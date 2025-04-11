@@ -1,4 +1,4 @@
-local lsp = {
+local server = {
     default_config = {
         cmd = { 'tailwindcss-language-server', '--stdio' },
         -- filetypes copied and adjusted from tailwindcss-intellisense
@@ -122,4 +122,4 @@ npm install -g @tailwindcss/language-server
     },
 }
 
-return lsp.default_config
+return server.default_config
