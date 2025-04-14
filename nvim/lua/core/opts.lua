@@ -1,5 +1,8 @@
 local opt = vim.opt
 
+-- Disable mouse
+opt.mouse = nil
+
 -- Relative line numbers
 opt.relativenumber = true
 
@@ -7,7 +10,7 @@ opt.relativenumber = true
 opt.showmode = false
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+opt.inccommand = 'split'
 
 -- Tab length
 opt.tabstop = 4
@@ -15,37 +18,37 @@ opt.softtabstop = 4
 opt.shiftwidth = 4
 
 -- Replace tabs with spaces
-vim.opt.expandtab = true
+opt.expandtab = true
 
-vim.opt.smartindent = true
+opt.smartindent = true
 
-vim.opt.wrap = false
+opt.wrap = false
 
 -- Disable Swap and Backup Files
-vim.opt.swapfile = false
-vim.opt.backup = false
+opt.swapfile = false
+opt.backup = false
 
 -- Disable search highlighting.
-vim.opt.hlsearch = false
+opt.hlsearch = false
 -- Enable incremental search.
-vim.opt.incsearch = true
+opt.incsearch = true
 
 -- Enable True Color Support
-vim.opt.termguicolors = true
+opt.termguicolors = true
 
 -- Scroll Offset
 -- Keeps 10 lines visible above and below the cursor while scrolling
-vim.opt.scrolloff = 10
+opt.scrolloff = 10
 
-vim.opt.guicursor = ''
+opt.guicursor = ''
 
 -- Enable absolute line numbering
-vim.opt.nu = true
+opt.nu = true
 
 -- Reserve space for diagnostic icons
-vim.opt.signcolumn = 'yes'
+opt.signcolumn = 'yes'
 
-vim.opt.updatetime = 50
+opt.updatetime = 50
 
 -- Adds a vertical line at column 120.
-vim.opt.colorcolumn = '120'
+opt.colorcolumn = '120'
