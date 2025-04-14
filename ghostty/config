@@ -1,4 +1,5 @@
-shell-integration-features = true
+background-opacity = 0.95
 
-theme = dark:rose-pine,light:rose-pine-dawn
 font-size = 16
+
+theme = jellybeans
