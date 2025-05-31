@@ -12,7 +12,7 @@ return {
         config = function()
             require('mini.pick').setup()
             require('mini.surround').setup()
-            require('mini.notify').setup()
+            -- require('mini.notify').setup()
             require('mini.indentscope').setup()
         end,
     },
