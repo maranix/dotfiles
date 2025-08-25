@@ -8,7 +8,13 @@ return {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/nvim-cmp",
-        "L3MON4D3/LuaSnip",
+        {
+            "L3MON4D3/LuaSnip",
+            dependencies = { "rafamadriz/friendly-snippets" },
+            config = function()
+                require("luasnip.loaders.from_vscode").lazy_load()
+            end
+        },
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
     },
@@ -28,6 +34,7 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "gopls",
+                "zls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -83,7 +90,8 @@ return {
             mapping = cmp.mapping.preset.insert({
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+                ['<C-CR>'] = cmp.mapping.confirm({ select = true }),
+                ['<C-e>'] = cmp.mapping.abort(),
                 ["<C-Space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
@@ -95,18 +103,5 @@ return {
                 { name = 'cmdline' },
             })
         })
-
-        vim.diagnostic.config({
-            -- update_in_insert = true,
-            float = {
-                focusable = false,
-                style = "minimal",
-                border = "rounded",
-                source = "always",
-                header = "",
-                prefix = "",
-            },
-        })
     end
 }
-
