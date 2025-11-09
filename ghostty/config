@@ -1,5 +1,8 @@
+# User Interface
 background-opacity = 0.95
 
+# Font
 font-size = 16
 
+# Theme
 theme = jellybeans
