@@ -9,8 +9,8 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', 'J', 'mzJ`z')
 
 -- Scroll up & down inside the buffer while keeping the cursor in middle
-vim.keymap.set('n', '<C-f>', '<C-d>zz')
-vim.keymap.set('n', '<C-b>', '<C-u>zz')
+vim.keymap.set('n', '<C-p>', '<C-d>zz')
+vim.keymap.set('n', '<C-n>', '<C-u>zz')
 
 -- Show search results while keeping the cursor in middle
 vim.keymap.set('n', 'n', 'nzzzv')
@@ -24,7 +24,7 @@ vim.keymap.set('n', '<leader>Y', [["+Y]])          -- Yanks highlighted line to 
 vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]])
 
 -- It just prevents keymaps from being executed when the key is pressed.
--- By setting <nop> to a key N would prevent N to trigger a keymap(normally it goes to the next search map).
+-- By setting <nop> to a key Q would prevent Q to trigger a keymap(normally it goes to the next search map).
 vim.keymap.set('n', 'Q', '<nop>')
 
 -- Diagnostic keymaps
@@ -41,6 +41,7 @@ vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
 -- Search & replace in the entire buffer
 vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+-- Make current file an executable
 vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })
 
 -- Clear highlights on search when pressing <Esc> in normal mode

@@ -1,30 +1,45 @@
 return {
-    { 'fei6409/log-highlight.nvim', event = 'BufRead *.log', opts = {} },
-    {
-        'nvim-treesitter/nvim-treesitter-context',
-        tag = 'v1.0.0',
-        event = { 'BufRead', 'BufNewFile' },
-        keys = {
-            {
-                '[c',
-                function()
-                    require('treesitter-context').go_to_context(vim.v.count1)
-                end,
-                desc = 'Go to context',
-            },
-        },
-        opts = { max_lines = 1 },
-    },
     {
         'nvim-treesitter/nvim-treesitter',
         lazy = false,
-        branch = 'master',
+        branch = 'main',
         build = ':TSUpdate',
-        opts = {
-            auto_install = true,
-            sync_install = false,
-            highlight = { enable = true },
-            indent = { enable = true },
-        }
+
+        config = function()
+            local ts = require('nvim-treesitter')
+
+            ts.install({
+                'go',
+                'dart',
+                'python',
+                'lua',
+                "javascript",
+                "typescript",
+                "tsx",
+                "jsx",
+                "svelte",
+                "html",
+                "css"
+            })
+        end
     },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        branch = "main",
+        opts = {},
+        keys = {
+            { "<leader>af", function()
+                require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
+            end },
+            { "<leader>if", function()
+                require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
+            end },
+            { "<leader>ac", function()
+                require("nvim-treesitter-textobjects.select").select_textobject("@class.outer", "textobjects")
+            end },
+            { "<leader>ic", function()
+                require("nvim-treesitter-textobjects.select").select_textobject("@class.inner", "textobjects")
+            end },
+        },
+    }
 }
