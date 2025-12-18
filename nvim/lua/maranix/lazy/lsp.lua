@@ -13,7 +13,7 @@ return {
             "mason-org/mason-lspconfig.nvim",
             opts = {
                 automatic_enable = false,
-                ensure_installed = { "gopls", "basedpyright", "ruff", "ts_ls", "svelte" }
+                ensure_installed = { "gopls", "basedpyright", "ruff", "ts_ls", "svelte", "zls" }
             },
             dependencies = {
                 { "mason-org/mason.nvim", opts = {} },
@@ -27,6 +27,7 @@ return {
             gopls = {},
             ts_ls = {},
             svelte = {},
+            zls = {},
             dartls = {},
             basedpyright = {
                 -- Using Ruff's import organizer
@@ -101,15 +102,4 @@ return {
             vim.lsp.enable(server)
         end
     end
-
-    -- example calling setup directly for each LSP
-    -- config = function()
-    --     local capabilities = require('blink.cmp').get_lsp_capabilities()
-    --     local lspconfig = require('lspconfig')
-
-    --     lspconfig['dartls'].setup({
-    --         cmd = { "fvm", "dart", "language-server", "--protocol=lsp" },
-    --         capabilities = { capabilities }
-    --     })
-    -- end
 }
