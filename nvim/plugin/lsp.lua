@@ -80,7 +80,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 		end)
 
 		-- Fidget
-		require("fidget").setup()
+		require("fidget").setup({})
 
 		-- Trouble
 		require("trouble").setup()
