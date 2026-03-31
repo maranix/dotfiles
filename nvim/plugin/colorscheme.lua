@@ -1,10 +1,10 @@
-vim.pack.add({ {src = "https://github.com/wtfox/jellybeans.nvim", name = "jellybeans"} })
-
-require("jellybeans").setup({
-	background = {
-		dark = 'jellybeans_muted',
-		light = 'jellybeans_light',
-	},
+vim.pack.add({
+	{ src = "https://github.com/wtfox/jellybeans.nvim", name = "jellybeans" },
+	{ src = "https://github.com/ribru17/bamboo.nvim", name = "bamboo" },
 })
 
-vim.cmd.colorscheme("jellybeans")
+local clsm = "bamboo"
+
+require(clsm).setup()
+
+vim.cmd.colorscheme(clsm)

@@ -55,25 +55,17 @@ vim.pack.add({
 	-- Diagnostic --
 })
 
-local lsp_ready = false
-local lua_ready = false
-local formatter_ready = false
-
-vim.schedule(function()
-	require("mason").setup()
-	require("mason-lspconfig").setup({
-		ensure_installed = vim.tbl_keys(lsp_list),
-	})
-end)
-
 -- Lazy Load plugins that are not required on startup
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+	once = true,
 	callback = function()
-		if lsp_ready then
-			return
-		end
-
-		lsp_ready = true
+		-- Schedule Mason to run without blocking the UI
+		vim.schedule(function()
+			require("mason").setup()
+			require("mason-lspconfig").setup({
+				ensure_installed = vim.tbl_keys(lsp_list),
+			})
+		end)
 
 		-- Trouble
 		require("trouble").setup()
@@ -81,6 +73,30 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 		-- Blink.cmp & nvim-lspconfig
 		local blink = require("blink.cmp")
+		blink.setup({
+			keymap = { preset = "enter" },
+			signature = { enabled = true },
+			completion = { list = { selection = { preselect = true, auto_insert = true } } },
+			sources = {
+				default = { "lazydev", "lsp", "snippets", "buffer", "path" },
+				providers = {
+					lazydev = {
+						name = "LazyDev",
+						module = "lazydev.integrations.blink",
+						-- make lazydev completions top priority (see `:h blink.cmp`)
+						score_offset = 100,
+					},
+					snippets = {
+						opts = {
+							extended_filetypes = {
+								javascript = { "jsdoc" },
+								dart = { "flutter" },
+							},
+						},
+					},
+				},
+			},
+		})
 
 		local on_attach = function(_, bufnr)
 			local opts = { noremap = true, silent = true, buf = bufnr }
@@ -109,44 +125,14 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 			vim.lsp.config(server, config)
 		end
-
-		blink.setup({
-			keymap = { preset = "enter" },
-			signature = { enabled = true },
-			completion = { list = { selection = { preselect = true, auto_insert = true } } },
-			sources = {
-				default = { "lazydev", "lsp", "snippets", "buffer", "path" },
-				providers = {
-					lazydev = {
-						name = "LazyDev",
-						module = "lazydev.integrations.blink",
-						-- make lazydev completions top priority (see `:h blink.cmp`)
-						score_offset = 100,
-					},
-					snippets = {
-						opts = {
-							extended_filetypes = {
-								javascript = { "jsdoc" },
-								dart = { "flutter" },
-							},
-						},
-					},
-				},
-			},
-		})
 	end,
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
+	once = true,
 	callback = function(args)
-		if formatter_ready then
-			return
-		end
-
 		local status, conform = pcall(require, "conform")
 		if status then
-			formatter_ready = true
-
 			conform.setup({
 				formatters_by_ft = {
 					lua = { "stylua" },
@@ -163,16 +149,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+	once = true,
 	pattern = "lua",
 	callback = function()
-		if lua_ready then
-			return
-		end
-
 		local status, lazydev = pcall(require, "lazydev")
 		if status then
-			lua_ready = true
-
 			lazydev.setup({
 				library = {
 					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },

@@ -4,6 +4,10 @@
       "rev": "8e5ad5fcda6c2a7e53eaaf2b1b9562a537caf630",
       "src": "https://github.com/XXiaoA/atone.nvim"
     },
+    "bamboo": {
+      "rev": "1309bc88bffcf1bedc3e84e7fa9004de93da774a",
+      "src": "https://github.com/ribru17/bamboo.nvim"
+    },
     "blink": {
       "rev": "451168851e8e2466bc97ee3e026c3dcb9141ce07",
       "src": "https://github.com/saghen/blink.cmp",
