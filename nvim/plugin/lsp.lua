@@ -35,6 +35,7 @@ vim.pack.add({
 		name = "blink",
 		version = version.range("1.x"),
 	},
+	{ src = "https://github.com/Kaiser-Yang/blink-cmp-avante", name = "blink-cmp-avante" },
 	{ src = "https://github.com/rafamadriz/friendly-snippets", name = "friendly-snippets" },
 	-- Blink --
 
@@ -80,7 +81,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 		end)
 
 		-- Fidget
-		require("fidget").setup()
+		require("fidget").setup({})
 
 		-- Trouble
 		require("trouble").setup()
@@ -93,8 +94,13 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 			signature = { enabled = true },
 			completion = { list = { selection = { preselect = true, auto_insert = true } } },
 			sources = {
-				default = { "lazydev", "lsp", "snippets", "buffer", "path" },
+				default = { "avante", "lazydev", "lsp", "snippets", "buffer", "path" },
 				providers = {
+					avante = {
+						module = "blink-cmp-avante",
+						name = "Avante",
+						opts = {}, -- options for blink-cmp-avante
+					},
 					lazydev = {
 						name = "LazyDev",
 						module = "lazydev.integrations.blink",
