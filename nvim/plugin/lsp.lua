@@ -1,6 +1,6 @@
 local version = vim.version
 
-local lsp_list = { lua_ls = {} }
+local lsp_list = { lua_ls = {}, dartls = {} }
 
 vim.pack.add({
 	-- Mason --
@@ -53,19 +53,34 @@ vim.pack.add({
 		version = "main",
 	},
 	-- Diagnostic --
+
+	-- Fidget --
+	{ src = "https://github.com/j-hui/fidget.nvim", name = "fidget", version = version.range("1.x") },
+	-- Fidget --
 })
 
--- Lazy Load plugins that are not required on startup
+-- Lazy Load plugins
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 	once = true,
 	callback = function()
 		-- Schedule Mason to run without blocking the UI
 		vim.schedule(function()
+			local langs = vim.tbl_filter(function(name)
+				if name == "dartls" then
+					return false
+				end
+
+				return true
+			end, vim.tbl_keys(lsp_list))
+
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = vim.tbl_keys(lsp_list),
+				ensure_installed = langs,
 			})
 		end)
+
+		-- Fidget
+		require("fidget").setup()
 
 		-- Trouble
 		require("trouble").setup()
@@ -124,6 +139,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 			config.on_attach = on_attach
 
 			vim.lsp.config(server, config)
+			vim.lsp.enable(server)
 		end
 	end,
 })

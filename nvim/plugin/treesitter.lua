@@ -23,6 +23,6 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", name = "treesitter", version = "main" },
 })
 
-local langs = { "lua" }
+local langs = { "lua", "dart" }
 
 require("nvim-treesitter").install(langs)

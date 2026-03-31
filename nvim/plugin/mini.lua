@@ -2,30 +2,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-mini/mini.nvim", name = "mini", version = "stable" },
 })
 
-local loaded = {
-	notify = false,
-	diff = false,
-	split_join = false,
-	comment = false,
-	surround = false,
-}
-
 local config = {
-	notify = {
-		content = {
-			format = function(notif)
-				return notif.msg
-			end,
-		},
-		window = {
-			config = {
-				anchor = "SE",
-				border = "rounded",
-				col = vim.o.columns,
-				row = vim.o.lines - 3, -- Show one row above Statusline
-			},
-		},
-	},
 	diff = {
 		view = {
 			style = "sign",
@@ -46,50 +23,16 @@ local config = {
 	surround = {},
 }
 
-vim.api.nvim_create_autocmd("BufEnter", {
-	callback = function()
-		if not loaded.notify then
-			local status, notify = pcall(require, "mini.notify")
-			if status then
-				notify.setup(config.notify)
+local setup_mini_tools = function()
+	require("mini.diff").setup(config.diff)
+	require("mini.splitjoin").setup(config.split_join)
+	require("mini.surround").setup(config.surround)
+	require("mini.comment").setup(config.comment)
+end
 
-				vim.notify = notify.make_notify()
-				loaded.notify = true
-			end
-		end
-
-		if not loaded.diff then
-			local status, diff = pcall(require, "mini.diff")
-			if status then
-				diff.setup(config.diff)
-				loaded.diff = true
-			end
-		end
-
-		if not loaded.split_join then
-			local status, split_join = pcall(require, "mini.splitjoin")
-			if status then
-				split_join.setup(config.split_join)
-				loaded.split_join = true
-			end
-		end
-
-		if not loaded.surround then
-			local status, surround = pcall(require, "mini.surround")
-			if status then
-				surround.setup(config.surround)
-				loaded.surround = true
-			end
-		end
-
-		if not loaded.comment then
-			local status, comment = pcall(require, "mini.comment")
-			if status then
-				comment.setup(config.comment)
-				loaded.comment = true
-			end
-		end
-	end,
+vim.api.nvim_create_autocmd("BufReadPre", {
+	once = true,
+	callback = setup_mini_tools,
 })
 
 ---------- Picker ----------
@@ -112,7 +55,7 @@ end, { desc = "Grep Live" })
 
 vim.keymap.set("n", "<leader>fb", function()
 	local wipeout_cur = function()
-		vim.api.nvim_buf_delete(pick.get_picker_matches().current.bufnr, {})
+		vim.api.nvim_buf_delete(pick.get_picker_matches().current.bufnr, { force = true })
 	end
 	local buffer_mappings = { wipeout = { char = "<C-d>", func = wipeout_cur } }
 
