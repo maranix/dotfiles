@@ -1,6 +1,6 @@
 local version = vim.version
 
-local lsp_list = { lua_ls = {}, dartls = {} }
+local lsp_list = { lua_ls = {}, dartls = {}, rust_analyzer = {} }
 
 vim.pack.add({
 	-- Mason --
@@ -123,6 +123,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 			vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
+			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 			vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
 
 			-- Diagnostic

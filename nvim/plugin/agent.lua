@@ -11,15 +11,12 @@ local function setup_agentic()
 		return agentic
 	end
 
-	agentic.setup({
-		provider = "gemini-acp",
-		debug = true,
-	})
+	agentic.setup({ provider = "gemini-acp" })
 	loaded = true
 	return agentic
 end
 
-vim.keymap.set({ "n", "v", "i" }, "<leader>aa", function()
+vim.keymap.set({ "n", "v" }, "<leader>aa", function()
 	setup_agentic().toggle()
 end, { desc = "Ask Agent" })
 
