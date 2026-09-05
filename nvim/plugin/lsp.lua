@@ -1,6 +1,6 @@
 local version = vim.version
 
-local lsp_list = { lua_ls = {}, dartls = {}, rust_analyzer = {} }
+local lsp_list = { lua_ls = {}, dartls = {}, tsgo = {} }
 
 vim.pack.add({
 	-- Mason --
@@ -83,8 +83,10 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 		require("fidget").setup({})
 
 		-- Trouble
-		require("trouble").setup()
-		vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
+		require("trouble").setup({})
+		vim.keymap.set("n", "<leader>xx", function()
+			require("trouble").toggle("diagnostics")
+		end, { desc = "Diagnostics (Trouble)" })
 
 		-- Blink.cmp & nvim-lspconfig
 		local blink = require("blink.cmp")
