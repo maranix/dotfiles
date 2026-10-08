@@ -1,6 +1,6 @@
 local version = vim.version
 
-local lsp_list = { lua_ls = {}, dartls = {}, tsgo = {} }
+local lsp_list = { lua_ls = {}, dartls = {}, tsgo = {}, sourcekit = {} }
 
 vim.pack.add({
 	-- Mason --
@@ -66,7 +66,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 		-- Schedule Mason to run without blocking the UI
 		vim.schedule(function()
 			local langs = vim.tbl_filter(function(name)
-				if name == "dartls" then
+				if name == "dartls" or name == "sourcekit" then
 					return false
 				end
 
@@ -140,6 +140,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 		for server, config in pairs(lsp_list) do
 			config.capabilities = blink.get_lsp_capabilities(config.capabilities)
 			config.on_attach = on_attach
+			config.cmd = { vim.trim(vim.fn.system("xcrun -f sourcekit-lsp")) }
 
 			vim.lsp.config(server, config)
 			vim.lsp.enable(server)
@@ -155,6 +156,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 			conform.setup({
 				formatters_by_ft = {
 					lua = { "stylua" },
+					swift = { "swiftformat" },
 				},
 				format_on_save = {
 					timeout_ms = 500,
